@@ -1,0 +1,8 @@
+GET http://localhost:8080/users
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InR5cGUiOiJBTk9OWU1PVVMiLCJuYW1lIjoiQW5vbnltb3VzIn0sImlhdCI6MTY3MDU0NjkxNCwiZXhwIjoxNzAyMDgyOTE0fQ.g4CT2bhv0SrIOLAr4u6FKXGFU4nZ89an4GPmi6yuh-o
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
