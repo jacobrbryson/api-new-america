@@ -15,7 +15,8 @@ let config = {
         user: process.env.CONN_USER,
         password: process.env.CONN_PASSWORD,
         database: process.env.CONN_DATABASE,
-        charset: "utf8mb4"
+        charset: "utf8mb4",
+        multipleStatements: true,
     }
 };
 

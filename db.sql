@@ -55,3 +55,9 @@ INSERT INTO `new_america`.`tutorials` (`id`, `name`, `description`) VALUES ('MOV
 INSERT INTO `new_america`.`tutorials` (`id`, `name`, `description`) VALUES ('MOVEMENT_2', 'More advanced movement', 'Capture the flag in a base with obstacles');
 INSERT INTO `new_america`.`tutorials` (`id`, `name`, `description`) VALUES ('ATTACK_1', 'Destroy the box', 'Pickup a pistol and shoot the box until it blows up!');
 INSERT INTO `new_america`.`tutorials` (`id`, `name`, `description`) VALUES ('ATTACK_2', 'Destroy the line of site (LOS) turret', 'Destroying this turret will require strafing [A, D]');
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tutorial_users` AS select `tu`.`id` AS `id`,`tu`.`created` AS `created`,`tu`.`updated` AS `updated`,`tu`.`tutorialId` AS `tutorialId`,`tu`.`userId` AS `userId`,`tu`.`timeMs` AS `timeMs`,`t`.`name` AS `tutorialName`,`t`.`description` AS `tutorialDescription`,`u`.`steamid` AS `userSteamId`,`u`.`personaname` AS `userPersonaname` from ((`tutorial_users` `tu` join `tutorials` `t` on((`tu`.`tutorialId` = `t`.`id`))) join `users` `u` on((`tu`.`userId` = `u`.`id`)));
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_tutorials` AS select `tutorials`.`id` AS `id`,`tutorials`.`name` AS `name`,`tutorials`.`description` AS `description` from `tutorials`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_users` AS select `users`.`id` AS `id`,`users`.`steamid` AS `steamid`,`users`.`personaname` AS `personaname` from `users`;
