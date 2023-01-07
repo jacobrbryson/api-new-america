@@ -7,9 +7,8 @@ const mysql = require("mysql2");
 /* based on RESTful routes */
 /* *************************/
 exports.get = async function(object, params, returnObject = false){
-	id = 0;
 	return new Promise((resolve, reject) => {
-		let countSelect = `SELECT COUNT(id) as count FROM v_${object.key}`;
+		let countSelect = `SELECT COUNT(*) as count FROM v_${object.key}`;
 		let select = `SELECT ${object.columns.join(", ")} FROM v_${object.key}`;
 		let where = ``;
 		for(let [key, value] of Object.entries(params)){
@@ -22,10 +21,10 @@ exports.get = async function(object, params, returnObject = false){
 		let sql = !returnObject ? countSelect + where + `; ` : ``;
 		sql += select + where + limit;
 
-		db.query(sql, [id], (error, results) => {
+		db.query(sql, [], (error, results) => {
 			if(error) return reject(error);
 
-			if(returnObject && !results.length) resolve(null);
+			if(returnObject && !results.length) return resolve({});
 			
 			if(returnObject){
 				resolve(new object.model(results[0]));
@@ -37,4 +36,16 @@ exports.get = async function(object, params, returnObject = false){
 			}
 		})
 	});
+}
+
+exports.post = async function(object, body){
+	return new Promise((resolve, reject) => {
+		db.query(`CALL sp_create_update_${object.key}(?,?,?);
+		`, [body.tutorialId, body.userId, body.timeMs], (error, results) => {
+			if(error) return reject(error);
+
+			resolve(new object.model(results[0][0]));
+		});
+	});
+	
 }

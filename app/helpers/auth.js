@@ -12,8 +12,8 @@ exports.auth = async function(req, res, next){
 
 	try{
 		const decoded = decodeToken(token);
-
-		if(!decoded?.type){
+		
+		if(!decoded?.id){
 			return res.status(401).json({message: "Invalid token"});
 		}
 

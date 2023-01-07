@@ -25,23 +25,38 @@ module.exports = async function (req, res) {
 		
 	if(!table) return res.status(404).json({ message: "Invalid request - resource not found"});
 
-	const params = addUriParamsToQueryParams(req.query, objectKeys, objectIds);
+	const params = addUriParamsToQueryParams(req.query, objectKeys, objectIds, req.user);
 
 	//If there's an equal number of keys to ids then return an object instead of an array
 	const returnObject = objectKeys.length == objectIds.length;
 
-	let response = await db.get(table, params, returnObject).catch((error) => {
-		console.error(error);
-	});
+	let response = null;
+	if(req.method == "GET"){
+		response = await db.get(table, params, returnObject).catch((error) => {
+			console.error(error);
+		});
+	}else if(req.method == "POST"){
+		let body = req.body;
+		body['userId'] = req.user.id;
+		body['tutorialId'] = params.tutorialId;
+		response = await db.post(table, body).catch((error) => {
+			console.error(error);
+		});
+	}
+	
 
 	if(!response) return res.status(500).json({message: "Something went wrong"});
+
+	if(Object.keys(response).length === 0) return res.status(404).send();
 
 	res.json(response);
 }
 
-function addUriParamsToQueryParams(queryParams, keys, ids){
+function addUriParamsToQueryParams(queryParams, keys, ids, user){
 	for(i = 0; i < ids.length; i++){
-		queryParams[keys[i].substring(0, keys[i].length - 1) + "Id"] = ids[i];
+		let key = keys[i].substring(0, keys[i].length - 1) + "Id";
+		let id =  (key == 'userId' && ids[i] == 'me' ? user.id : ids[i]);
+		queryParams[key] = id;
 	}
 
 	return queryParams;

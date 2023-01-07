@@ -7,5 +7,6 @@ module.exports = function (app) {
     app.route("/:parentObjectKey").get(privateRouteController);
     app.route("/:parentObjectKey/:parentObjectId").get(privateRouteController);
     app.route("/:parentObjectKey/:parentObjectId/:childObjectKey").get(privateRouteController);
+    app.route("/:parentObjectKey/:parentObjectId/:childObjectKey").post(privateRouteController);
     app.route("/:parentObjectKey/:parentObjectId/:childObjectKey/:childObjectId").get(privateRouteController);
 }
