@@ -1,5 +1,6 @@
 const db = require("../helpers/db");
 const mysql = require("mysql2");
+const objects = require("../config/objects");
 
 /* *************************/
 /* Hopefully not too messy */
@@ -48,4 +49,16 @@ exports.post = async function(object, body){
 		});
 	});
 	
+}
+
+//TODO - move this somewhere smarter
+exports.addUser = async function(user){
+  const userObject = objects.find((object) => object.key == 'users');
+
+  return new Promise((resolve, reject) => {
+    db.query(`CALL sp_create_update_user(?,?,?)`, [null, null, user.personaname], (error, results) => {
+      if(error) return reject(error);
+      resolve(new userObject.model(results[0][0]));
+    });
+  });
 }

@@ -1,4 +1,4 @@
-POST http://localhost:8101/tutorials/ATTACK_1/users
+POST http://localhost:8101/login
 content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxMywicGVyc29uYW5hbWUiOiJBbm9ueW1vdXMifSwiaWF0IjoxNjcyNzUyNTYyLCJleHAiOjE5ODgzMjg1NjJ9.SgRu4-R0IZQ_B2sM3JI8Lw3QrSDs0L7K-UpZsNCVtIA
 
