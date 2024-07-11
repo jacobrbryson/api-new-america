@@ -25,7 +25,10 @@ module.exports = async function (req, res) {
 		
 	if(!table) return res.status(404).json({ message: "Invalid request - resource not found"});
 
-	const params = addUriParamsToQueryParams(req.query, objectKeys, objectIds, req.user);
+	//const params = addUriParamsToQueryParams(req.query, objectKeys, objectIds, req.user);
+
+	//Temp patch
+	const params = objectIds?.length ? {id: objectIds[0]} : {};
 
 	//If there's an equal number of keys to ids then return an object instead of an array
 	const returnObject = objectKeys.length == objectIds.length;
@@ -55,7 +58,7 @@ module.exports = async function (req, res) {
 function addUriParamsToQueryParams(queryParams, keys, ids, user){
 	for(i = 0; i < ids.length; i++){
 		let key = keys[i].substring(0, keys[i].length - 1) + "Id";
-		let id =  (key == 'userId' && ids[i] == 'me' ? user.id : ids[i]);
+		let id = (key == 'userId' && ids[i] == 'me' ? user.id : ids[i]);
 		queryParams[key] = id;
 	}
 

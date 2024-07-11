@@ -21,7 +21,7 @@ exports.get = async function(object, params, returnObject = false){
 
 		let sql = !returnObject ? countSelect + where + `; ` : ``;
 		sql += select + where + limit;
-
+		
 		db.query(sql, [], (error, results) => {
 			if(error) return reject(error);
 

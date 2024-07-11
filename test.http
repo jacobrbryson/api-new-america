@@ -1,8 +1,20 @@
-POST http://localhost:8101/login
-content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxMywicGVyc29uYW5hbWUiOiJBbm9ueW1vdXMifSwiaWF0IjoxNjcyNzUyNTYyLCJleHAiOjE5ODgzMjg1NjJ9.SgRu4-R0IZQ_B2sM3JI8Lw3QrSDs0L7K-UpZsNCVtIA
 
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
+#GET http://localhost:8101/locations/1
+#content-type: application/json
+#authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxOCwicGVyc29uYW5hbWUiOiJBbm9ueW1vdXMifSwiaWF0IjoxNzIwNjU5NDQwLCJleHAiOjIwMzYyMzU0NDB9.OzwiIiPAs4HrJY9aTbiMmhlJZCQ_-vQdC85FCDuh5Vc
+
+
+POST https://api-na.orcwood.com/login
+
+
+#POST http://localhost:8101/login
+#content-type: application/json
+#authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxMywicGVyc29uYW5hbWUiOiJBbm9ueW1vdXMifSwiaWF0IjoxNjcyNzUyNTYyLCJleHAiOjE5ODgzMjg1NjJ9.SgRu4-R0IZQ_B2sM3JI8Lw3QrSDs0L7K-UpZsNCVtIA
+
+#{
+#    "name": "sample",
+#    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+#}
+
+
+
