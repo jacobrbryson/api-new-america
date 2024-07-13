@@ -1,4 +1,4 @@
-let config = {
+export default {
     isProd: !!process.env.IS_PROD,
     port: process.env.PORT || 8080,
     info: {
@@ -7,7 +7,7 @@ let config = {
         updated: new Date("2023-1-02")
     },
     jwt: {
-        key: process.env.JWT_KEY,
+        key: process.env.JWT_KEY || "jwt_key_1234",
         expiresIn: "10y" //10 years
     },
     conn: {
@@ -20,4 +20,5 @@ let config = {
     }
 };
 
-module.exports = config;
+
+

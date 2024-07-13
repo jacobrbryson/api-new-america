@@ -1,7 +1,8 @@
-const config = require("../config/config");
-const jwt = require("jsonwebtoken");
+import config from "../config";
+import jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
 
-exports.auth = async function(req, res, next){
+export const auth = async (req: Request, res: Response, next: NextFunction) => {
 	if(req.path === "/" || req.path === "/login") return next();
 
 	if(!req.headers.authorization || req.headers.authorization.indexOf("Bearer ") === -1){
@@ -25,11 +26,7 @@ exports.auth = async function(req, res, next){
 	}
 }
 
-exports.encodeToken = function (tokenData = {}){
-	return encodeToken(tokenData);
-}
-
-function encodeToken(tokenData = {}){
+export const encodeToken = (tokenData = {}) => {
 	const token = jwt.sign(
 		{
 			data: tokenData
@@ -43,14 +40,10 @@ function encodeToken(tokenData = {}){
 	return token;
 }
 
-exports.decodeToken = function (token){
-	return decodeToken(token);
-}
-
-function decodeToken(token){
+export const decodeToken = (token:string) => {
 	try{
 		const decoded = jwt.verify(token, config.jwt.key);
-		return decoded?.data ? decoded.data : null;
+		return typeof decoded !== 'string' ? decoded.data : null;
 	}catch(error){
 		console.error(error);
 		return null;
