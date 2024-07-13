@@ -13,3 +13,17 @@ content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0LCJzdGVhbUlkIjo3NjU2MTE5ODM5MzUwNDQ2MCwicHJpbWFyeUxvY2F0aW9uIjp7ImlkIjoxfSwiZGlzcGxheU5hbWUiOiJGb3h4IiwibGV2ZWwiOjEsImNyZWRpdHMiOjAsInhwIjowfSwiaWF0IjoxNzIwODc3NjMwLCJleHAiOjIwMzY0NTM2MzB9.Xf0dJLWUhUtJvvvMc6h6JYke7N5G0_js_Yc4LoUlHMo
 
 ###
+
+POST https://api-na.orcwood.com/public/login
+content-type: application/json
+
+{
+    "steamId": 76561198393504470,
+    "displayName": "Foxx"
+}
+
+###
+
+GET https://api-na.orcwood.com/game/locations
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0LCJzdGVhbUlkIjo3NjU2MTE5ODM5MzUwNDQ2MCwicHJpbWFyeUxvY2F0aW9uIjp7ImlkIjoxfSwiZGlzcGxheU5hbWUiOiJGb3h4IiwibGV2ZWwiOjEsImNyZWRpdHMiOjAsInhwIjowfSwiaWF0IjoxNzIwODgwNDU5LCJleHAiOjIwMzY0NTY0NTl9.R3O4tCWpExGc5W-xodC-CM8h5Kbodk5WH4QBQ8gKgD4

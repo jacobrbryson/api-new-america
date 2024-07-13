@@ -19,5 +19,6 @@ export default class Location {
 			level: location.owner_user_level
 		}
 		this.isPrimary = location.is_primary;
+		this.seed = location.seed;
 	}
 }
