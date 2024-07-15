@@ -21,7 +21,8 @@ export const login = async (req:Request, res:Response) => {
   const token = encodeToken(user);
 
   const response = {
-    accessToken: token
+    accessToken: token,
+    user: user
   }
 
   return res.json(response);

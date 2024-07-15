@@ -2,6 +2,7 @@ import Location from './location';
 
 export default class User {
 	id?:number;
+	uuid?:string;
 	created?:Date;
 	updated?:Date;
 	lastLogin?:Date;
@@ -14,6 +15,7 @@ export default class User {
 
 	constructor(user:any){
 		this.id = user.id;
+		this.uuid = user.uuid;
 		this.created = user.created;
 		this.updated = user.updated;
 		this.lastLogin = user.last_login;
