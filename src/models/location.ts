@@ -23,7 +23,7 @@ export default class Location {
 		} : null;
 		this.isPrimary = location.is_primary;
 		this.seed = location.seed;
-		this.coordX = location.coordX;
-		this.coordY = location.coordY;
+		this.coordX = location.coord_x;
+		this.coordY = location.coord_y;
 	}
 }
