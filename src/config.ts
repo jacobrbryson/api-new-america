@@ -17,6 +17,12 @@ export default {
         database: process.env.CONN_DATABASE,
         charset: "utf8mb4",
         multipleStatements: true,
+    },
+    steam: {
+        appId: 1594280,
+        identity: "newamericasteamwebapi",
+        key: "B64F064A9AC958E2CA80674B2D9E760D",
+        host: "partner.steam-api.com"
     }
 };
 
