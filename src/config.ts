@@ -8,7 +8,7 @@ export default {
     },
     jwt: {
         key: process.env.JWT_KEY || "jwt_key_1234",
-        expiresIn: "10y" //10 years
+        expiresIn: process.env.JWT_EXPIRES_IN || "10y" //10 years
     },
     conn: {
         host: process.env.CONN_HOST,
@@ -19,12 +19,10 @@ export default {
         multipleStatements: true,
     },
     steam: {
-        appId: 1594280,
-        identity: "newamericasteamwebapi",
-        key: "B64F064A9AC958E2CA80674B2D9E760D",
+        appId: process.env.STEAM_APP_ID,
+        identity: process.env.STEAM_IDENTITY,
+        key: process.env.STEAM_KEY,
         host: "partner.steam-api.com"
     }
 };
-
-
 
