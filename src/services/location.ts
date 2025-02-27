@@ -11,7 +11,7 @@ class Location {
 
 		return new Promise((resolve, reject) => {
 			const sql = `SELECT count(*) as count FROM v_locations; 
-				SELECT * FROM v_locations LIMIT ${limit} OFFSET ${offset}`;
+				SELECT * FROM v_locations ORDER BY id DESC LIMIT ${limit} OFFSET ${offset}`;
 			db.query(sql, [], (error, results: any) => {
 				if (error) return reject(error);
 				resolve({
@@ -24,13 +24,6 @@ class Location {
 		});
 	}
 
-	/*************  ✨ Codeium Command ⭐  *************/
-	/**
-	 * Retrieve a location by uuid or coordinates
-	 * @param identifier uuid or coordinates (e.g. "1-2") of the location
-	 * @returns a Promise that resolves with a LocationModel
-	 */
-	/******  d851afdf-fa1d-459f-9531-fe39206580e2  *******/
 	async get(identifier: string): Promise<LocationModel> {
 		//Identifier can either be uuid or coordinates
 		const where = this.whereByIdentifier(identifier);
