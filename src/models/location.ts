@@ -12,6 +12,10 @@ export default class Location {
 	coordY?: number;
 	typeEnum?: string;
 	name?: string;
+	age?: number;
+	level?: number;
+	income?: number;
+	status?: string;
 
 	constructor(location: any) {
 		this.uuid = location.uuid;
@@ -31,5 +35,9 @@ export default class Location {
 		this.coordY = location.coord_y;
 		this.typeEnum = location.type_enum;
 		this.name = location.name;
+		this.age = location.age;
+		this.level = location.level;
+		this.income = location.income;
+		this.status = location.status;
 	}
 }

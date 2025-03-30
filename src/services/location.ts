@@ -1,17 +1,23 @@
+import { escape } from "mysql2";
 import db from "../helpers/db";
 import QueryHelper from "../helpers/query";
 import LocationModel from "../models/location";
 import { Result } from "../types/query";
-import { escape } from "mysql2";
 
 class Location {
 	async list(params: any): Promise<Result> {
 		const limit = QueryHelper.limit(params.limit);
 		const offset = QueryHelper.offset(params.offset);
+		const where = this.buildWhere(params);
+		const orderBy = ` ORDER BY id DESC`;
+		const limitOffset = ` LIMIT ${limit} OFFSET ${offset}`;
 
 		return new Promise((resolve, reject) => {
-			const sql = `SELECT count(*) as count FROM v_locations; 
-				SELECT * FROM v_locations ORDER BY id DESC LIMIT ${limit} OFFSET ${offset}`;
+			const sql = `
+				SELECT count(*) as count 
+				FROM v_locations${where}; 
+				SELECT * 
+				FROM v_locations${where}${orderBy}${limitOffset};`;
 			db.query(sql, [], (error, results: any) => {
 				if (error) return reject(error);
 				resolve({
@@ -54,6 +60,14 @@ class Location {
 			: ` WHERE coord_x = ${escape(
 					identifier.split("-")[0]
 			  )} AND coord_y = ${escape(identifier.split("-")[1])}`;
+	}
+
+	private buildWhere(params: any) {
+		let where = ` WHERE id IS NOT NULL`;
+		if (params.owner_user_uuid)
+			where += ` AND owner_user_uuid = ${escape(params.owner_user_uuid)}`;
+
+		return where;
 	}
 }
 
