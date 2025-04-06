@@ -48,8 +48,8 @@ class Heightmap {
 
 
   async generate(params:any):Promise<IHeightmap>{
-    const centerLat = QueryHelper.limit(params.centerLat);
-    const centerLong = QueryHelper.limit(params.centerLong);
+    const centerLat = QueryHelper.limit(params.centerlat);
+    const centerLong = QueryHelper.limit(params.centerlong);
     const distance = QueryHelper.limit(params.distance);
     console.log(params);
     console.log(`CenterLat ${centerLat}, centerLong ${centerLong}, distance ${distance}`);
