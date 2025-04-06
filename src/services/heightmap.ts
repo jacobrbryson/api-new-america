@@ -38,6 +38,7 @@ class Heightmap {
           latitude BETWEEN ${escape(startLat)} AND ${escape(endLat)}
           AND longitude BETWEEN ${escape(startLong)} AND ${escape(endLong)};`;
 
+          console.log(sql);
 			db.query(sql, [], (error, results: any) => {
 				if (error) return reject(error);
 				resolve(results);
