@@ -12,6 +12,6 @@ router.get("/locations", list);
 router.get("/locations/:identifier", get);
 router.post("/users/:uuid/avatar", setAvatar);
 router.post("/users/:uuid/corp", setCorp);
-router.post("/heightmap",generate);
+router.get("/heightmap/:centerlat/:centerlong/:distance",generate);
 
 export default router;
