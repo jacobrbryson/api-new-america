@@ -51,6 +51,8 @@ class Heightmap {
     const centerLat = QueryHelper.limit(params.centerLat);
     const centerLong = QueryHelper.limit(params.centerLong);
     const distance = QueryHelper.limit(params.distance);
+    console.log(params);
+    console.log(`CenterLat ${centerLat}, centerLong ${centerLong}, distance ${distance}`);
     let maxHeight = 1000000;
     let  minHeight = 1000000;
     let heightRange = 0;
