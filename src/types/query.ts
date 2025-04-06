@@ -6,8 +6,8 @@ export interface Result{
 }
 
 export interface IPoint{
-	lat:number;
-	long:number;
+	latitude:number;
+	longitude:number;
 	height:number;
 }
 

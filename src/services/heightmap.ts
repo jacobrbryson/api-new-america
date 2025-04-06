@@ -30,13 +30,13 @@ class Heightmap {
     return new Promise((resolve, reject) => {
 			const sql = `
 				SELECT 
-          latitude as lat, 
-          longitude as long, 
+          latitude, 
+          longitude, 
           height 
         FROM mola
         WHERE
-          lat BETWEEN ${escape(startLat)} AND ${escape(endLat)}
-          AND BETWEEN ${escape(startLong)} AND ${escape(endLong)};`;
+          latitude BETWEEN ${escape(startLat)} AND ${escape(endLat)}
+          AND longitude BETWEEN ${escape(startLong)} AND ${escape(endLong)};`;
 
 			db.query(sql, [], (error, results: any) => {
 				if (error) return reject(error);
