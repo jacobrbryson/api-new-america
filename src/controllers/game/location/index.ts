@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import LocationService from "../../services/location";
+import LocationService from "../../../services/location";
 
 export const list = async (req: Request, res: Response) => {
 	const params = req.query;

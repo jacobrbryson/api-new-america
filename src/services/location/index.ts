@@ -1,8 +1,8 @@
 import { escape } from "mysql2";
-import db from "../helpers/db";
-import QueryHelper from "../helpers/query";
-import LocationModel from "../models/location";
-import { Result } from "../types/query";
+import { getMysqlPool } from "../../db/mysql";
+import QueryHelper from "../../helpers/query";
+import LocationModel from "../../models/location";
+import { Result } from "../../types/query";
 
 class Location {
 	async list(params: any): Promise<Result> {
@@ -18,6 +18,8 @@ class Location {
 				FROM v_locations${where}; 
 				SELECT * 
 				FROM v_locations${where}${orderBy}${limitOffset};`;
+
+			const db = getMysqlPool();
 			db.query(sql, [], (error, results: any) => {
 				if (error) return reject(error);
 				resolve({
@@ -35,6 +37,7 @@ class Location {
 		const where = this.whereByIdentifier(identifier);
 
 		return new Promise((resolve, reject) => {
+			const db = getMysqlPool();
 			db.query(
 				`
 				SELECT * FROM v_locations ${where} LIMIT 1`,

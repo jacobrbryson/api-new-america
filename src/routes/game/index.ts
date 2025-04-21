@@ -1,17 +1,17 @@
 import Router from "express";
+
 import { auth } from "../../helpers/auth";
-import { list, get } from "../../controllers/game/location";
-import { setAvatar, setCorp } from "../../controllers/game/user";
-import { generate } from "../../controllers/game/heightmap";
+
+import HeightmapRoutes from "./heightmap";
+import LocationRoutes from "./location";
+import UserRoutes from "./user";
 
 const router = Router();
 
 router.use(auth);
 
-router.get("/locations", list);
-router.get("/locations/:identifier", get);
-router.post("/users/:uuid/avatar", setAvatar);
-router.post("/users/:uuid/corp", setCorp);
-router.get("/heightmap/:centerlat/:centerlong/:distance",generate);
+router.use("/heightmaps", HeightmapRoutes);
+router.use("/locations", LocationRoutes);
+router.use("/users", UserRoutes);
 
 export default router;

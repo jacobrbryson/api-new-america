@@ -1,9 +1,10 @@
-import db from "../helpers/db";
+import { getMysqlPool } from "../db/mysql";
 import UserModel from "../models/user";
 
 class User {
 	async login(user: UserModel): Promise<UserModel> {
 		return new Promise((resolve, reject) => {
+			const db = getMysqlPool();
 			db.query(
 				`CALL sp_login(?,?)`,
 				[user.steamId, user.displayName],
@@ -17,6 +18,7 @@ class User {
 
 	async update(uuid: string, user: UserModel): Promise<UserModel> {
 		return new Promise((resolve, reject) => {
+			const db = getMysqlPool();
 			db.query(
 				`CALL sp_update_user(?,?,?,?,?,?,?,?)`,
 				[
@@ -40,6 +42,7 @@ class User {
 
 	async get(uuid: string): Promise<UserModel> {
 		return new Promise((resolve, reject) => {
+			const db = getMysqlPool();
 			db.query(
 				`SELECT * FROM v_users WHERE uuid = ? LIMIT 1`,
 				[uuid],
