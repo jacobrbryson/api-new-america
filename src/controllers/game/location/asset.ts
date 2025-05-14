@@ -26,16 +26,14 @@ export const postLocationAssets = async (req: Request, res: Response) => {
 };
 
 export const postPlayerAssets = async (req: Request, res: Response) => {
-	const { playerId, assets } = req.body;
+	const locationId = req.params.identifier;
+	const assets = req.body;
 
-	if (!playerId || !assets) {
-		return res
-			.status(400)
-			.json({ message: "playerId and assets are required." });
-	}
+	//Check that all items are in the player's inventory
+	//Check for items outside the terrain
 
 	try {
-		await createPlayerAssets(playerId, assets);
+		await createPlayerAssets(locationId, assets);
 		return res.status(201).json({ message: "Player assets saved." });
 	} catch (error) {
 		return res
