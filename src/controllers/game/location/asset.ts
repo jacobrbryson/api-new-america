@@ -65,10 +65,10 @@ export const getLocationAssetsById = async (
 };
 
 export const getPlayerAssetsById = async (req: Request, res: Response) => {
-	const { playerId } = req.params;
+	const locationId = req.params.identifier;
 
 	try {
-		const assets = await getPlayerAssets(playerId);
+		const assets = await getPlayerAssets(locationId);
 		if (assets) {
 			return res.status(200).json(assets);
 		} else {

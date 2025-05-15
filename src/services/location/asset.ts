@@ -2,12 +2,12 @@ import { LocationAsset, PlayerAsset } from "../../models/location/asset";
 
 // Save or update location assets
 export const createLocationAssets = async (
-	locationId: string,
+	locationUuid: string,
 	assets: any
 ) => {
 	try {
 		await LocationAsset.findOneAndUpdate(
-			{ locationId },
+			{ locationUuid },
 			{ assets },
 			{ upsert: true, new: true }
 		);
@@ -19,12 +19,12 @@ export const createLocationAssets = async (
 
 // Save or update player assets
 export const createPlayerAssets = async (
-	playerId: string,
+	locationUuid: string,
 	assets: any
 ) => {
 	try {
 		await PlayerAsset.findOneAndUpdate(
-			{ playerId },
+			{ locationUuid },
 			{ assets },
 			{ upsert: true, new: true }
 		);
@@ -35,10 +35,10 @@ export const createPlayerAssets = async (
 };
 
 // Get location assets by ID
-export const getLocationAssets = async (locationId: string) => {
+export const getLocationAssets = async (locationUuid: string) => {
 	try {
-		const doc = await LocationAsset.findOne({ locationId });
-		return doc?.assets || null;
+		const doc = await LocationAsset.findOne({ locationUuid });
+		return doc?.assets || [];
 	} catch (err) {
 		console.error("Error fetching location assets:", err);
 		throw err;
@@ -46,10 +46,10 @@ export const getLocationAssets = async (locationId: string) => {
 };
 
 // Get player assets by ID
-export const getPlayerAssets = async (playerId: string) => {
+export const getPlayerAssets = async (locationUuid: string) => {
 	try {
-		const doc = await PlayerAsset.findOne({ playerId });
-		return doc?.assets || null;
+		const doc = await PlayerAsset.findOne({ locationUuid });
+		return doc?.assets || [];
 	} catch (err) {
 		console.error("Error fetching player assets:", err);
 		throw err;
