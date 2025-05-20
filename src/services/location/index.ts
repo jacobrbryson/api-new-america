@@ -69,6 +69,9 @@ class Location {
 		let where = ` WHERE id IS NOT NULL`;
 		if (params.owner_user_uuid)
 			where += ` AND owner_user_uuid = ${escape(params.owner_user_uuid)}`;
+		if (params.is_primary) {
+			where += ` AND is_primary = true`;
+		}
 
 		return where;
 	}

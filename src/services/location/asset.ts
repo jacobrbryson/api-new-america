@@ -38,7 +38,7 @@ export const createPlayerAssets = async (
 export const getLocationAssets = async (locationUuid: string) => {
 	try {
 		const doc = await LocationAsset.findOne({ locationUuid });
-		return doc?.assets || [];
+		return doc?.assets || { children: [] };
 	} catch (err) {
 		console.error("Error fetching location assets:", err);
 		throw err;
@@ -49,7 +49,7 @@ export const getLocationAssets = async (locationUuid: string) => {
 export const getPlayerAssets = async (locationUuid: string) => {
 	try {
 		const doc = await PlayerAsset.findOne({ locationUuid });
-		return doc?.assets || [];
+		return doc?.assets || { children: [] };
 	} catch (err) {
 		console.error("Error fetching player assets:", err);
 		throw err;

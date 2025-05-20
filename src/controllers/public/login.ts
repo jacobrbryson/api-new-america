@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
 import { encodeToken } from "../../helpers/auth";
-import UserService from "../../services/user";
 import SteamService from "../../services/steam";
+import UserService from "../../services/user";
 
 export const login = async (req: Request, res: Response) => {
-	const steamId = req.body.steamId;
-	const displayName = req.body.displayName;
-	const sessionTicket = req.body.sessionTicket;
+	const { steamId, displayName, sessionTicket } = req.body;
 
 	const verified = await verifySteamId(
 		steamId,
@@ -18,8 +16,8 @@ export const login = async (req: Request, res: Response) => {
 
 	if (!verified)
 		return res.status(403).json({
-			message:
-				"Invalid request, expected request body: {steamId:number, displayName:string}",
+			message: `Invalid request, expected request body: 
+			{steamId:number, displayName:string, sessionTicket:string}`,
 		});
 
 	const user = await UserService.login({
