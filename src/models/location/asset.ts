@@ -1,13 +1,13 @@
 import mongoose from "../../db/mongo";
 
-const LocationAssetSchema = new mongoose.Schema({
+const TerrainAssetSchema = new mongoose.Schema({
 	locationUuid: { type: String, required: true, unique: true },
 	assets: { type: mongoose.Schema.Types.Mixed, required: true },
 });
 
-export const LocationAsset = mongoose.model(
-	"LocationAsset",
-	LocationAssetSchema
+export const TerrainAsset = mongoose.model(
+	"TerrainAsset",
+	TerrainAssetSchema
 );
 
 const PlayerAssetSchema = new mongoose.Schema({

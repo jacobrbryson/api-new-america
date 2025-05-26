@@ -1,16 +1,16 @@
 import express from "express";
 import {
-	getLocationAssetsById,
 	getPlayerAssetsById,
-	postLocationAssets,
+	getTerrainAssetsById,
 	postPlayerAssets,
+	postTerrainAssets,
 } from "../../../controllers/game/location/asset";
 
 const router = express.Router({ mergeParams: true });
 
-router.post("/location", postLocationAssets);
+router.post("/terrain", postTerrainAssets);
 router.post("/player", postPlayerAssets);
-router.get("/location", getLocationAssetsById);
+router.get("/terrain", getTerrainAssetsById);
 router.get("/player", getPlayerAssetsById);
 
 export default router;

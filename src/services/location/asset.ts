@@ -1,18 +1,18 @@
-import { LocationAsset, PlayerAsset } from "../../models/location/asset";
+import { PlayerAsset, TerrainAsset } from "../../models/location/asset";
 
 // Save or update location assets
-export const createLocationAssets = async (
+export const createTerrainAssets = async (
 	locationUuid: string,
 	assets: any
 ) => {
 	try {
-		await LocationAsset.findOneAndUpdate(
+		await TerrainAsset.findOneAndUpdate(
 			{ locationUuid },
 			{ assets },
 			{ upsert: true, new: true }
 		);
 	} catch (err) {
-		console.error("Error creating location assets:", err);
+		console.error("Error creating terrain assets:", err);
 		throw err;
 	}
 };
@@ -35,9 +35,9 @@ export const createPlayerAssets = async (
 };
 
 // Get location assets by ID
-export const getLocationAssets = async (locationUuid: string) => {
+export const getTerrainAssets = async (locationUuid: string) => {
 	try {
-		const doc = await LocationAsset.findOne({ locationUuid });
+		const doc = await TerrainAsset.findOne({ locationUuid });
 		return doc?.assets || { children: [] };
 	} catch (err) {
 		console.error("Error fetching location assets:", err);

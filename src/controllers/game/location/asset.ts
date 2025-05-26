@@ -1,22 +1,20 @@
 import { Request, Response } from "express";
 import {
-	createLocationAssets,
 	createPlayerAssets,
-	getLocationAssets,
+	createTerrainAssets,
 	getPlayerAssets,
+	getTerrainAssets,
 } from "../../../services/location/asset";
 
-export const postLocationAssets = async (req: Request, res: Response) => {
-	const { locationId, assets } = req.body;
+export const postTerrainAssets = async (req: Request, res: Response) => {
+	const locationId = req.params.identifier;
+	const assets = req.body;
 
-	if (!locationId || !assets) {
-		return res
-			.status(400)
-			.json({ message: "locationId and assets are required." });
-	}
+	//Check that all items are in the player's inventory
+	//Check for items outside the terrain
 
 	try {
-		await createLocationAssets(locationId, assets);
+		await createTerrainAssets(locationId, assets);
 		return res.status(201).json({ message: "Location assets saved." });
 	} catch (error) {
 		return res
@@ -42,25 +40,25 @@ export const postPlayerAssets = async (req: Request, res: Response) => {
 	}
 };
 
-export const getLocationAssetsById = async (
+export const getTerrainAssetsById = async (
 	req: Request,
 	res: Response
 ) => {
-	const { locationId } = req.params;
+	const locationId = req.params.identifier;
 
 	try {
-		const assets = await getLocationAssets(locationId);
+		const assets = await getTerrainAssets(locationId);
 		if (assets) {
-			return res.status(200).json(assets);
+			return res.json(assets);
 		} else {
 			return res
 				.status(404)
-				.json({ message: "Location assets not found." });
+				.json({ message: "Terrain assets not found." });
 		}
 	} catch (error) {
 		return res
 			.status(500)
-			.json({ message: "Failed to fetch location assets." });
+			.json({ message: "Failed to fetch terrain assets." });
 	}
 };
 
@@ -70,7 +68,7 @@ export const getPlayerAssetsById = async (req: Request, res: Response) => {
 	try {
 		const assets = await getPlayerAssets(locationId);
 		if (assets) {
-			return res.status(200).json(assets);
+			return res.json(assets);
 		} else {
 			return res.status(404).json({ message: "Player assets not found." });
 		}
